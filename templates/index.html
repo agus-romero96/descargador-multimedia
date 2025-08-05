@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Descargador Multimedia Accesible</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <h1>Descargador Multimedia</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul role="alert">
+      {% for category, msg in messages %}<li class="{{ category }}">{{ msg }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+  {% endwith %}
+  <form method="post">
+    <fieldset>
+      <legend>Plataforma</legend>
+      {% for p in opciones.plataformas %}
+      <label><input type="radio" name="plataforma" value="{{ p }}" required> {{ p }}</label>
+      {% endfor %}
+    </fieldset>
+    <fieldset>
+      <legend>Tipo</legend>
+      {% for t in opciones.tipos %}
+      <label><input type="radio" name="tipo" value="{{ t }}" required> {{ t }}</label>
+      {% endfor %}
+    </fieldset>
+    <label>URL: <input type="url" name="url" required></label>
+    <div id="audio-options">
+      <label>Formato: <select name="formato">
+        {% for f in opciones.formatos_audio %}<option>{{ f }}</option>{% endfor %}
+      </select></label>
+      <label>Calidad: <select name="calidad">
+        {% for c in opciones.calidades_audio %}<option>{{ c }}</option>{% endfor %}
+      </select></label>
+    </div>
+    <div id="video-options" hidden>
+      <label>Formato: <select name="formato">
+        {% for f in opciones.formatos_video %}<option>{{ f }}</option>{% endfor %}
+      </select></label>
+      <label>Calidad: <select name="calidades">
+        {% for c in opciones.calidades_video %}<option>{{ c }}</option>{% endfor %}
+      </select></label>
+    </div>
+    <label><input type="checkbox" name="noplaylist"> No playlist</label>
+    <button type="submit">Descargar</button>
+  </form>
+  <script>
+    document.querySelectorAll('input[name="tipo"]').forEach(el => el.addEventListener('change', ()=>{
+      const audio = document.getElementById('audio-options');
+      const video = document.getElementById('video-options');
+      if (el.value === 'Audio') { audio.hidden = false; video.hidden = true; } else { audio.hidden = true; video.hidden = false; }
+    }));
+  </script>
+</body>
+</html>

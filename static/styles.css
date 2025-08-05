@@ -1,0 +1,123 @@
+/* Estilos accesibles y de alto contraste */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #005fcc;
+  --error-bg: #fee;
+  --error-text: #900;
+  --success-bg: #efe;
+  --success-text: #060;
+  --focus-outline: 3px solid var(--primary-color);
+  font-size: 100%; /* base 16px */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+fieldset {
+  border: 2px solid var(--text-color);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+legend {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+input[type="url"], select, button {
+  font-size: 1rem;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--text-color);
+  border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:focus, input:focus, select:focus {
+  outline: var(--focus-outline);
+}
+
+ul[role="alert"] {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  list-style: none;
+}
+
+li.success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+li.danger {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+#video-options[hidden],
+#audio-options[hidden] {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  h1 { font-size: 1.75rem; }
+  input[type="url"], select, button { font-size: 0.9rem; padding: 0.5rem; }
+}
+
+/* Visually hidden for ARIA */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Additional focus indicator for labels */
+input[type="radio"] + span,
+input[type="checkbox"] + span {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+input[type="radio"]:focus + span,
+input[type="checkbox"]:focus + span {
+  outline: var(--focus-outline);
+}
