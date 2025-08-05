@@ -21,12 +21,10 @@ def index():
         file_path = None
 
         try:
-            file_path = manager.download(plataforma, tipo, url, formato, calidad, noplaylist)
+            file_path, filename = manager.download(plataforma, tipo, url, formato, calidad, noplaylist)
 
             if not os.path.exists(file_path):
                 raise Exception("El archivo no se generó correctamente.")
-
-            filename = os.path.basename(file_path)
 
             # Limpieza posterior al envío del archivo
             @after_this_request
