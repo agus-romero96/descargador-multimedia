@@ -1,9 +1,11 @@
 # app.py
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file, after_this_request
 from modules.downloader import DownloadManager
 import os
 import shutil
-
+# Esto solo funcionará localmente, en Render no se ejecutará
+load_dotenv() 
 app = Flask(__name__)
 app.secret_key = 'cambia_por_una_clave_segura'
 manager = DownloadManager()

@@ -12,8 +12,8 @@ import requests
 class DownloadManager:
     def __init__(self):
         self.spotify_creds = {
-            'client_id': '79220c1558cb410c9bdb102f77d67447',
-            'client_secret': '3b9aa57d9c7143728611a584889abab8'
+            'client_id': os.environ.get('SPOTIPY_CLIENT_ID'),
+            'client_secret': os.environ.get('SPOTIPY_CLIENT_SECRET')
         }
 
     def get_spotify(self):
